@@ -1,7 +1,19 @@
-import './bootstrap';
+document.addEventListener("DOMContentLoaded", () => {
+    const sidebar = document.getElementById("sidebar");
+    const toggleDesktop = document.getElementById("toggleSidebarDesktop");
+    const toggleMobile = document.getElementById("toggleSidebarMobile");
 
-import Alpine from 'alpinejs';
+    // Desktop toggle
+    if (toggleDesktop) {
+        toggleDesktop.addEventListener("click", () => {
+            sidebar.classList.toggle("collapsed");
+        });
+    }
 
-window.Alpine = Alpine;
-
-Alpine.start();
+    // Mobile toggle
+    if (toggleMobile) {
+        toggleMobile.addEventListener("click", () => {
+            sidebar.classList.toggle("show");
+        });
+    }
+});

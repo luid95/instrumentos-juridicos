@@ -1,0 +1,56 @@
+/* ====== Colores institucionales ====== */
+.bg-vino { background-color: #800020 !important; }
+.text-vino { color: #800020 !important; }
+.btn-vino { background-color: #800020; color: #fff; border-color: #800020; }
+.btn-vino:hover { background-color: #9a2234; color: #fff; border-color: #9a2234; }
+
+/* ====== Sidebar (desktop por defecto) ====== */
+.sidebar {
+  width: 220px;
+  transition: width .3s ease, left .3s ease;
+  color: #fff;
+}
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .75rem;
+  border-radius: .375rem;
+}
+.sidebar a:hover {
+  background: rgba(255,255,255,.12);
+}
+.sidebar .menu-text { display: inline; }
+
+/* Colapsado (desktop) */
+.sidebar.collapsed { width: 60px; }
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed h5 { display: none; }
+
+/* Asegurar que el contenido no se esconda bajo el header fijo */
+.main-with-header { margin-top: 60px; }
+
+/* ====== Responsive (móvil / tablet ≤768px) ======
+   - Sidebar oculto fuera de pantalla por defecto (left: -220px)
+   - Botón ☰ (en el header) abre/cierra con la clase .show
+*/
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: -220px;
+    height: calc(100% - 60px);
+    z-index: 1050;
+    width: 220px;          /* ancho completo al mostrarse */
+    overflow-y: auto;
+  }
+  .sidebar.show { left: 0; }
+
+  /* En móvil, por defecto ocultamos textos del menú (cuando está escondido no aplica, pero si quieres un modo mini, descomenta lo siguiente) */
+  /* .sidebar .menu-text { display: none; } */
+}
+
+/* Footer pegado abajo cuando hay poco contenido */
+html, body { height: 100%; }

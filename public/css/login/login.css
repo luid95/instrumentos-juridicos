@@ -1,0 +1,25 @@
+/* Página de login con fondo a pantalla completa */
+.login-page {
+  min-height: 100vh;
+  background: url('/images/login-bg.jpg') center center / cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Tarjeta del login */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255,255,255, .95);
+  border: none;
+  border-radius: .75rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.login-title {
+  color: #800020;
+  font-weight: 700;
+  letter-spacing: .5px;
+}

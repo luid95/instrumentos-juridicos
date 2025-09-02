@@ -1,26 +1,26 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
+
+// Rutas públicas
+Route::middleware('guest')->group(function () {
+    Route::view('/login', 'auth.login')->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
-// Dashboard accesible solo para usuarios autenticados
-Route::middleware(['auth'])->group(function () {
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('login');
+})->name('logout');
 
-    // Dashboard principal
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    // Perfil del usuario
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
-
-// Carga de rutas de autenticación (login, registro, recuperación de contraseña)
-require __DIR__.'/auth.php';
