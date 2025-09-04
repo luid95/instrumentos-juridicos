@@ -1,31 +1,38 @@
 @extends('layouts.guest')
 
-@section('title','Iniciar sesión')
-
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/login/login.css') }}">
-@endpush
+@section('title', 'Iniciar sesión')
 
 @section('content')
-<div class="card shadow" style="max-width:380px; width:100%;">
-  <div class="card-body">
-    <h1 class="h4 text-center mb-4" style="color:#800020;">INSTRUMENTOS JURÍDICOS</h1>
+<div class="login-card">
+  <h1 class="h4 login-title mb-4">Instrumentos Jurídicos</h1>
 
-    <form method="POST" action="{{ route('login.post') }}">
-      @csrf
-      <div class="mb-3">
-        <label class="form-label">Correo</label>
-        <input type="email" name="email" class="form-control" required autofocus>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Contraseña</label>
-        <input type="password" name="password" class="form-control" required>
-      </div>
-      <button class="btn w-100 text-white" style="background:#800020;">Entrar</button>
-      <div class="text-center mt-2">
-        <a href="#">¿Olvidaste tu contraseña?</a>
-      </div>
-    </form>
+  {{-- Errores --}}
+  @if ($errors->any())
+    <div class="alert alert-danger py-2">
+      <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  {{-- Formulario login --}}
+  <form method="POST" action="{{ route('login.post') }}">
+    @csrf
+    <div class="mb-3">
+      <label class="form-label">Correo electrónico</label>
+      <input type="email" name="email" value="{{ old('email') }}" class="form-control" required autofocus>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <button class="btn btn-vino w-100">Entrar</button>
+  </form>
+
+  <div class="d-flex justify-content-between mt-3">
+    <a href="#">Recuperar contraseña</a>
   </div>
 </div>
 @endsection

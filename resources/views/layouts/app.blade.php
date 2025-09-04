@@ -58,13 +58,14 @@
     @auth
     <aside class="sidebar bg-vino text-white" id="sidebar">
       <div class="sidebar-header d-flex justify-content-between align-items-center p-2">
-        <h5 class="mb-0">Menú</h5>
+        
         {{-- Botón desktop para colapsar/expandir --}}
         <button class="btn btn-outline-light btn-sm d-none d-md-inline" id="toggleSidebarDesktop" type="button" aria-label="Colapsar menú">☰</button>
       </div>
-
+      
+      <h5 class="mb-0">Menú</h5>
       <ul class="list-unstyled mt-3 sidebar-menu">
-        <li><a href="#" class="d-flex align-items-center"><i class="bi bi-house-door"></i><span class="menu-text">Inicio</span></a></li>
+        <li><a href="#" class="d-flex align-items-center active"><i class="bi bi-house-door"></i><span class="menu-text">Inicio</span></a></li>
         <li><a href="#" class="d-flex align-items-center"><i class="bi bi-people"></i><span class="menu-text">Usuarios</span></a></li>
         <li><a href="#" class="d-flex align-items-center"><i class="bi bi-shield-lock"></i><span class="menu-text">Roles</span></a></li>
         <li><a href="#" class="d-flex align-items-center"><i class="bi bi-gear"></i><span class="menu-text">Configuración</span></a></li>
@@ -74,6 +75,7 @@
 
     {{-- Contenido principal --}}
     <main class="flex-grow-1 p-4">
+      <br><br>
       @yield('content')
     </main>
   </div>
@@ -87,7 +89,7 @@
 
   {{-- JS --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ asset('js/dashboard.js') }}"></script>
+  <script src="{{ asset('js/dashboard/dashboard.js') }}"></script>
   @stack('scripts')
 </body>
 </html>

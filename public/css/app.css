@@ -1,0 +1,128 @@
+.bg-vino { background-color: #800020 !important; }
+.text-vino { color: #800020 !important; }
+
+.btn-vino {
+  background-color: #800020;
+  border-color: #800020;
+  color: #fff;
+}
+.btn-vino:hover {
+  background-color: #9a2234;
+  border-color: #9a2234;
+  color: #fff;
+}
+
+.login-page {
+  min-height: 100vh;
+  background-image: url('/images/login.png');
+  background-repeat: repeat;
+  background-attachment: fixed; /* mantiene el fondo fijo */
+  background-size: 150px 150px; /* tamaño de cada "mosaico" */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: .75rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  padding: 2rem;
+}
+
+.login-title {
+  color: #800020;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ==== SIDEBAR ==== */
+.sidebar {
+  width: 220px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar .menu-text {
+  margin-left: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .menu-text {
+  display: none;
+}
+
+/* ===== Sidebar Menu ===== */
+.sidebar-menu li {
+  margin-bottom: 5px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+
+.sidebar-menu a i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+/* Hover */
+.sidebar-menu a:hover {
+  background-color: #9a2234; /* un vino más claro */
+  color: #fff;
+}
+
+/* Activo */
+.sidebar-menu a.active {
+  background-color: #fff;
+  color: #800020 !important;
+  font-weight: 600;
+}
+
+.sidebar-menu a.active i {
+  color: #800020;
+}
+
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 60px; /* debajo del header */
+    left: -220px;
+    height: calc(100% - 60px);
+    z-index: 1050;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .main-with-header {
+    flex-direction: column;
+  }
+
+  /* Reducir tamaño del título en el header */
+  .navbar-brand {
+    font-size: 1rem; /* más pequeño en móviles */
+  }
+
+  /* Ajustar iconos y botones */
+  .navbar .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}
