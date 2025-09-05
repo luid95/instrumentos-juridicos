@@ -62,14 +62,16 @@
         {{-- Botón desktop para colapsar/expandir --}}
         <button class="btn btn-outline-light btn-sm d-none d-md-inline" id="toggleSidebarDesktop" type="button" aria-label="Colapsar menú">☰</button>
       </div>
-      
+      <br>
       <h5 class="mb-0">Menú</h5>
       <ul class="list-unstyled mt-3 sidebar-menu">
-        <li><a href="#" class="d-flex align-items-center active"><i class="bi bi-house-door"></i><span class="menu-text">Inicio</span></a></li>
-        <li><a href="#" class="d-flex align-items-center"><i class="bi bi-people"></i><span class="menu-text">Usuarios</span></a></li>
-        <li><a href="#" class="d-flex align-items-center"><i class="bi bi-shield-lock"></i><span class="menu-text">Roles</span></a></li>
-        <li><a href="#" class="d-flex align-items-center"><i class="bi bi-gear"></i><span class="menu-text">Configuración</span></a></li>
-      </ul>
+        <li><a href="{{ route('dashboard') }}" class="d-flex align-items-center"><i class="bi bi-house-door"></i><span class="menu-text">Inicio</span></a></li>
+        <li><a href="{{ route('subrogados.index') }}" class="d-flex align-items-center"><i class="bi bi-briefcase"></i><span class="menu-text">Subrogados</span></a></li>
+        <li><a href="{{ route('s-generales.index') }}" class="d-flex align-items-center"><i class="bi bi-building"></i><span class="menu-text">Servicios Generales</span></a></li>
+        <li><a href="{{ route('r-materiales.index') }}" class="d-flex align-items-center"><i class="bi bi-box-seam"></i><span class="menu-text">Recursos Materiales</span></a></li>
+        <li class="mt-4"><hr class="text-white"></li>
+        <li><a href="{{ route('usuarios.index') }}" class="d-flex align-items-center"><i class="bi bi-people"></i><span class="menu-text">Usuarios del sistema</span></a></li>
+    </ul>
     </aside>
     @endauth
 
