@@ -7,23 +7,37 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PasswordChangedMail;
+
 
 class PasswordController extends Controller
 {
+
+    public function edit()
+    {
+        return view('auth.change-password');
+    }
+
     /**
      * Update the user's password.
      */
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validateWithBag('updatePassword', [
-            'current_password' => ['required', 'current_password'],
-            'password' => ['required', Password::defaults(), 'confirmed'],
+            'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
-        $request->user()->update([
+        $user = $request->user();
+
+        // Guardar nueva contraseña
+        $user->update([
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('status', 'password-updated');
+        // Enviar correo
+        Mail::to($user->email)->send(new PasswordChangedMail($user, $validated['password']));
+
+        return redirect()->route('password.edit')->with('status', 'Contraseña actualizada correctamente.');
     }
 }

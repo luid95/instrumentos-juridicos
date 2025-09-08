@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\PasswordController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubrogadosController;
 use App\Http\Controllers\ServiciosGeneralesController;
@@ -24,5 +26,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/servicios-generales', [ServiciosGeneralesController::class, 'index'])->name('s-generales.index');
     Route::get('/recursos-materiales', [RecursosMaterialesController::class, 'index'])->name('r-materiales.index');
 
+    // Usuarios
     Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
+    Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
+    Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store');
+    Route::get('/usuarios/{usuario}/edit', [UserController::class, 'edit'])->name('usuarios.edit');
+    Route::put('/usuarios/{usuario}', [UserController::class, 'update'])->name('usuarios.update');
+    Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])->name('usuarios.destroy');
+
+
+
+    Route::get('/password/change', [App\Http\Controllers\Auth\PasswordController::class, 'edit'])->name('password.edit');
+    Route::put('/password/change', [App\Http\Controllers\Auth\PasswordController::class, 'update'])->name('password.update');
 });

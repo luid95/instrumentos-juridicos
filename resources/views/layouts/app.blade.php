@@ -29,8 +29,8 @@
     <div class="d-flex align-items-center">
       <span class="text-white me-3">
         {{ Auth::user()->name }}
-        @if(optional(Auth::user()->role)->role_name)
-          – {{ Auth::user()->role->role_name }}
+        @if(optional(Auth::user()->role_name))
+          {{ Auth::user()->role_name}}
         @endif
       </span>
 
@@ -39,7 +39,11 @@
           <i class="bi bi-person-circle fs-4"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li>
+            <a class="dropdown-item" href="{{ route('password.edit') }}">
+              Cambiar contraseña
+            </a>
+          </li>
           <li><hr class="dropdown-divider"></li>
           <li>
             <form action="{{ route('logout') }}" method="POST">
