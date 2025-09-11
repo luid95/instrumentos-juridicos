@@ -70,11 +70,23 @@
       <h5 class="mb-0">Menú</h5>
       <ul class="list-unstyled mt-3 sidebar-menu">
         <li><a href="{{ route('dashboard') }}" class="d-flex align-items-center"><i class="bi bi-house-door"></i><span class="menu-text">Inicio</span></a></li>
+
+        @if(Auth::user()->role_name === 'admin' || Auth::user()->role_name === 'subrogados')
         <li><a href="{{ route('subrogados.index') }}" class="d-flex align-items-center"><i class="bi bi-briefcase"></i><span class="menu-text">Subrogados</span></a></li>
+        @endif
+
+        @if(Auth::user()->role_name === 'admin' || Auth::user()->role_name === 'generales')
         <li><a href="{{ route('s-generales.index') }}" class="d-flex align-items-center"><i class="bi bi-building"></i><span class="menu-text">Servicios Generales</span></a></li>
+        @endif
+
+        @if(Auth::user()->role_name === 'admin' || Auth::user()->role_name === 'materiales')
         <li><a href="{{ route('r-materiales.index') }}" class="d-flex align-items-center"><i class="bi bi-box-seam"></i><span class="menu-text">Recursos Materiales</span></a></li>
+        @endif
+
+        @if(Auth::user()->role_name === 'admin')
         <li class="mt-4"><hr class="text-white"></li>
         <li><a href="{{ route('usuarios.index') }}" class="d-flex align-items-center"><i class="bi bi-people"></i><span class="menu-text">Usuarios del sistema</span></a></li>
+        @endif
     </ul>
     </aside>
     @endauth
